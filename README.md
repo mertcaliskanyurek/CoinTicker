@@ -5,12 +5,7 @@
 
 This is a simple app that provides realtime coin price tracking and coin details. Data provided by [Coingecko](https://www.coingecko.com/en/api)
 
-![All Coins](/screenshots/Screenshot1.png)
-![Watchlist](/screenshots/Screenshot2.png)
-![Notification](/screenshots/Screenshot3.png)
-![Coin Details](/screenshots/Screenshot4.png)
-![Coin Details](/screenshots/Screenshot5.png)
-
+<img src="/screenshots/Screenshot1.png" title="All Coins" width="200"> <img src="/screenshots/Screenshot2.png" title="Watchlist" width="200"> <img src="/screenshots/Screenshot3.png" title="Notification" width="200"><img src="/screenshots/Screenshot5.png" title="Coin Details" width="200"><img src="/screenshots/Screenshot6.png" title="Coin Details" width="200">
 
 ## About CoinTicker
 
