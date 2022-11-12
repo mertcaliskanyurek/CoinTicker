@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="androidx.databinding.ObservableField"/>
+        <variable
+            name="coin"
+            type="com.mertcaliskanyurek.cointicker.data.feature.coin.model.Coin" />
+        <variable
+            name="isInWatchlist"
+            type="Boolean" />
+        <variable
+            name="vs_currency"
+            type="ObservableField&lt;String&gt;" />
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Coin Image -->
+        <ImageView
+            android:id="@+id/iv_coinImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:contentDescription="Coin Image" />
+
+        <!-- Name and Price -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_coinName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(coin.name+` (`+coin.symbol+`)`)}"
+                    android:layout_weight="1"
+                    android:hint="Etherium (ETH)"/>
+
+                <TextView
+                    android:id="@+id/iv_star"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:hint="#1"
+                    android:text="@{String.valueOf(`#`+coin.market_cap_rank)}"
+                />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="24sp"
+                        android:layout_weight="1"
+                        android:text="@{String.valueOf(coin.current_price)}"
+                        android:hint="1,512.00 usd"/>
+
+                    <TextView
+                        android:id="@+id/tv_price_change"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
+                        android:textStyle="bold"
+                        android:textSize="11sp"
+                        android:textAlignment="center"
+                        android:layout_marginStart="8dp"
+                        android:text="@{String.valueOf(coin.price_change_percentage_24h)}"
+                        android:background="@{coin.price_change_percentage_24h &lt; 0 ? @drawable/oval_bg_red : @drawable/oval_bg_green}"
+                        android:hint="-0.36808"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_watchList"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@{isInWatchlist ? @drawable/ic_eye_on : @drawable/ic_eye_off}"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    <!-- Show Detail Button
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="Show detail"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/arrow_down"/>
+        </LinearLayout>
+    </FrameLayout>-->
+
+</LinearLayout>
+</layout>

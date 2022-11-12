@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Coin Ticker</string>
+
+    <!-- Common -->
+    <string name="undo">UNDO</string>
+    <string name="nothing_to_show">Nothing to show</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <!-- Common End -->
+
+    <!-- Main Screen -->
+    <string name="search_title">Search</string>
+    <string name="search_hint">search a coin..</string>
+    <string name="watch_list">Watch List</string>
+    <string name="all_coins">All Coins</string>
+    <string name="vs_currency">Vs Currency</string>
+    <string name="choose_vs_currency">Choose Vs Currency</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_home">Home</string>
+    <string name="title_watchlist">Watchlist</string>
+    <string name="logout_title">Logout</string>
+    <string name="logout_message">Are you sure you want to logout?</string>
+    <!-- Main Screen End -->
+
+    <!-- Details Screen -->
+    <string name="title_activity_coin_detail">Coin Details</string>
+    <string name="description">Description</string>
+    <string name="details">Details</string>
+    <string name="ranks">Ranks</string>
+    <string name="community_data">Community Data</string>
+    <string name="developer_data">Developer Data</string>
+    <string name="links">Links</string>
+    <string name="added_to_watchlist">Added To Watchlist</string>
+    <string name="removed_from_watchlist">Removed From Watchlist</string>
+
+    <!-- details -->
+    <string name="block_time_in_minutes">Block time in munites : %1$s</string>
+    <string name="hashing_algorithm">Hashing Algorithm : %1$s</string>
+    <string name="genesis_date">Genesis Date : %1$s</string>
+
+    <!-- ranks -->
+    <string name="market_cap_rank">Market Cap Rank : %1$d</string>
+    <string name="developer_score">Developer Score : %1$.2f</string>
+    <string name="community_score">Community Score : %1$.2f</string>
+    <string name="liquidity_score">Liquidity Score : %1$.2f</string>
+
+    <!-- community data -->
+    <string name="twitter_followers">Twitter Followers : %1$d</string>
+    <string name="reddit_average_posts_48h">Reddit Average Posts (48h) : %1$.2f</string>
+    <string name="reddit_average_comments_48h">Reddit Average Comments (48h) : %1$.2f</string>
+    <string name="reddit_subscribers">Reddit Subscribers : %1$d</string>
+    <string name="reddit_accounts_active_48h">Reddit Accounts Active (48h) : %1$d</string>
+
+    <!-- developer data -->
+    <string name="forks">Forks : %1$d</string>
+    <string name="stars">Stars : %1$d</string>
+    <string name="subscribers">Subscribers : %1$d</string>
+    <string name="total_issues">Total Issues : %1$d</string>
+    <string name="closed_issues">Closed Issues : %1$d</string>
+    <string name="pull_requests_merged">Pull Requests Merged : %1$d</string>
+    <string name="pull_request_contributors">Pull Request Contributors : %1$d</string>
+
+    <!-- links -->
+    <string name="homepage">&lt;a href=": %1$s">Homepage&lt;/a></string>
+    <string name="blockchain_site">&lt;a href=": %1$s">Blockchain Site&lt;/a></string>
+    <string name="official_forum_url">&lt;a href=": %1$s">Official Forum Url&lt;/a></string>
+    <string name="chat_url">&lt;a href=": %1$s">Chat Url&lt;/a></string>
+    <string name="announcement_url">&lt;a href=": %1$s">Announcement Url&lt;/a></string>
+    <string name="subreddit_url">&lt;a href=": %1$s">Subreddit Url&lt;/a></string>
+    <string name="twitter_screen_name">&lt;a href="https://twitter.com/: %1$s">Twitter Screen Name&lt;/a></string>
+
+    <!-- Details Screen End -->
+
+    <!-- Exceptions -->
+    <string name="general_err">Something Went Wrong</string>
+    <string name="excp_user_not_found">User not found.</string>
+    <string name="excp_invalid_credentials">Invalid credentials</string>
+    <string name="excp_too_many_attempt">Too many attempt! Please try again later or reset your password.</string>
+    <string name="auth_error">Authentication failed. Please login.</string>
+    <string name="notification_channel_title">Coin Prices Notification</string>
+    <string name="notification_channel_name">Coin Prices Notificaiton</string>
+
+</resources>

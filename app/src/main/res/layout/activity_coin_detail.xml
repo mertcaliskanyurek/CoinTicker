@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="androidx.core.text.HtmlCompat"/>
+        <variable
+            name="coinDetail"
+            type="com.mertcaliskanyurek.cointicker.data.feature.coin.model.CoinDetail" />
+        <variable
+            name="watchList"
+            type="Boolean" />
+    </data>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.feature.coin_detail.CoinDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.BitcoinTicker.AppBarOverlay">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:title="@{coinDetail.name+` (`+coinDetail.symbol+`)`}"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/iv_toolbarCoin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="none"
+                app:layout_constraintTop_toTopOf="parent"
+                android:alpha="0.5"
+                />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.BitcoinTicker.PopupOverlay" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".ui.feature.coin_detail.CoinDetailActivity"
+        tools:showIn="@layout/activity_coin_detail">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <!-- Details Card -->
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardCornerRadius="15dp"
+               android:layout_margin="10dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="16dp"
+                       android:text="@string/details"
+                       android:textSize="18sp"
+                       android:textStyle="bold"
+                       app:layout_constraintBottom_toTopOf="@+id/imageView"
+                       app:layout_constraintHorizontal_bias="0.5"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintVertical_bias="0.0" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/link_chain_svgrepo_com"
+                       android:text="@{@string/block_time_in_minutes(coinDetail.block_time_in_minutes)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/math_formula_svgrepo_com"
+                       android:text="@{@string/hashing_algorithm(coinDetail.hashing_algorithm)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:layout_marginStart="8dp"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/baby_emoji_com"
+                       android:text="@{@string/genesis_date(coinDetail.genesis_date)}" />
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+
+           <!-- Ranks Card -->
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="8dp"
+               app:cardCornerRadius="15dp"
+               android:layout_margin="10dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="16dp"
+                       android:text="@string/ranks"
+                       android:textSize="18sp"
+                       android:textStyle="bold"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/leaderboard_star_svgrepo_com"
+                       android:text="@{@string/market_cap_rank(coinDetail.market_cap_rank)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/star_svgrepo_com"
+                       android:text="@{@string/developer_score(coinDetail.developer_score)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/star_svgrepo_com"
+                       android:text="@{@string/community_score(coinDetail.community_score)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/star_svgrepo_com"
+                       android:text="@{@string/liquidity_score(coinDetail.liquidity_score)}" />
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+
+           <!-- Community Data Card -->
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="8dp"
+               app:cardCornerRadius="15dp"
+               android:layout_margin="10dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="16dp"
+                       android:text="@string/community_data"
+                       android:textSize="18sp"
+                       android:textStyle="bold"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/twitter_svgrepo_com"
+                       android:text="@{@string/twitter_followers(coinDetail.community_data.twitter_followers)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/reddit_svgrepo_com"
+                       android:text="@{@string/reddit_average_posts_48h(coinDetail.community_data.reddit_average_posts_48h)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/reddit_svgrepo_com"
+                       android:text="@{@string/reddit_average_comments_48h(coinDetail.community_data.reddit_average_comments_48h)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/reddit_svgrepo_com"
+                       android:text="@{@string/reddit_subscribers(coinDetail.community_data.reddit_subscribers)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/reddit_svgrepo_com"
+                       android:text="@{@string/reddit_accounts_active_48h(coinDetail.community_data.reddit_accounts_active_48h)}" />
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+
+           <!-- Developer Data Card -->
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="8dp"
+               app:cardCornerRadius="15dp"
+               android:layout_margin="10dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="16dp"
+                       android:text="@string/developer_data"
+                       android:textSize="18sp"
+                       android:textStyle="bold"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/git_fork_svgrepo_com"
+                       android:text="@{@string/forks(coinDetail.developer_data.forks)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/star_svgrepo_com"
+                       android:text="@{@string/stars(coinDetail.developer_data.stars)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/people_svgrepo_com"
+                       android:text="@{@string/subscribers(coinDetail.developer_data.subscribers)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/bug_svgrepo_com"
+                       android:text="@{@string/total_issues(coinDetail.developer_data.total_issues)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/no_bug_svgrepo_com"
+                       android:text="@{@string/closed_issues(coinDetail.developer_data.closed_issues)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/merge_svgrepo_com"
+                       android:text="@{@string/pull_requests_merged(coinDetail.developer_data.pull_requests_merged)}" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/people_svgrepo_com"
+                       android:text="@{@string/pull_request_contributors(coinDetail.developer_data.pull_request_contributors)}" />
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+
+           <!-- Description Card -->
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="8dp"
+               app:cardCornerRadius="15dp"
+               android:layout_margin="10dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="16dp"
+                       android:text="@string/description"
+                       android:textSize="18sp"
+                       android:textStyle="bold"/>
+
+                   <TextView
+                       android:id="@+id/tv_description"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:padding="8dp"
+                       android:layout_margin="@dimen/text_margin"
+                       android:textColorLink="@color/link"
+                       android:text="@{HtmlCompat.fromHtml(String.valueOf(coinDetail.description.en),HtmlCompat. FROM_HTML_MODE_LEGACY)}" />
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+
+           <!-- Links Card -->
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="8dp"
+               app:cardCornerRadius="15dp"
+               android:layout_margin="10dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="16dp"
+                       android:text="@string/links"
+                       android:textSize="18sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/tv_homepageUrl"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/home_svgrepo_com"
+                       android:textColorLink="@color/link"
+                       android:text="@{HtmlCompat.fromHtml(@string/homepage(coinDetail.links.homepage[0]),HtmlCompat.FROM_HTML_MODE_LEGACY)}" />
+
+                   <TextView
+                       android:id="@+id/tv_blockchainUrl"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/link_chain_svgrepo_com"
+                       android:textColorLink="@color/link"
+                       android:text="@{HtmlCompat.fromHtml(@string/blockchain_site(coinDetail.links.blockchain_site[0]),HtmlCompat.FROM_HTML_MODE_LEGACY)}" />
+
+                   <TextView
+                       android:id="@+id/tv_formUrl"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/chat_svgrepo_com"
+                       android:textColorLink="@color/link"
+                       android:text="@{HtmlCompat.fromHtml(@string/official_forum_url(coinDetail.links.official_forum_url[0]),HtmlCompat.FROM_HTML_MODE_LEGACY)}" />
+
+                   <TextView
+                       android:id="@+id/tv_chatUrl"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       app:drawableLeftCompat="@drawable/chat_svgrepo_com"
+                       android:textColorLink="@color/link"
+                       android:text="@{HtmlCompat.fromHtml(@string/chat_url(coinDetail.links.chat_url[0]),HtmlCompat.FROM_HTML_MODE_LEGACY)}" />
+
+                   <TextView
+                       android:id="@+id/tv_announcementUrl"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       android:textColorLink="@color/link"
+                       app:drawableLeftCompat="@drawable/announcement_svgrepo_com"
+                       android:text="@{HtmlCompat.fromHtml(@string/announcement_url(coinDetail.links.announcement_url[0]),HtmlCompat.FROM_HTML_MODE_LEGACY)}" />
+
+                   <TextView
+                       android:id="@+id/tv_subredditUrl"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       android:textColorLink="@color/link"
+                       app:drawableLeftCompat="@drawable/reddit_svgrepo_com"
+                       android:text="@{HtmlCompat.fromHtml(@string/subreddit_url(coinDetail.links.subreddit_url),HtmlCompat.FROM_HTML_MODE_LEGACY)}" />
+
+                   <TextView
+                       android:id="@+id/tv_twitterUrl"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="@dimen/text_margin"
+                       android:drawablePadding="8dp"
+                       android:textColorLink="@color/link"
+                       app:drawableLeftCompat="@drawable/twitter_svgrepo_com"
+                       android:text="@{HtmlCompat.fromHtml(@string/twitter_screen_name(coinDetail.links.twitter_screen_name),HtmlCompat.FROM_HTML_MODE_LEGACY)}" />
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+
+       </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:backgroundTint="@{watchList ? @color/primary : @color/white}"
+        android:src="@{watchList ? @drawable/ic_eye_on : @drawable/ic_eye_off}"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|center"
+        android:visibility="gone"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
